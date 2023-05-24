@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "415255538939",
+    "project_id": "taxi-captain-baf40",
+    "storage_bucket": "taxi-captain-baf40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415255538939:android:d3bfc20313943e60f9545e",
+        "android_client_info": {
+          "package_name": "com.khati.kaptain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "415255538939-dnjhgeijrp3k88c6mjk0j9r2sv2uvm1c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.khati.kaptain",
+            "certificate_hash": "50cd78019103dbe81969802a25f512f7a3b293a9"
+          }
+        },
+        {
+          "client_id": "415255538939-kl7o34i1h1fg9atjsjho4th58kccicuu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.khati.kaptain",
+            "certificate_hash": "241b890a8dcdb219daed2bf7b623605cb0337016"
+          }
+        },
+        {
+          "client_id": "415255538939-1t9a9l1k3as8uj31ve58a11qta48cftf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ9iRk0UfDH1hBgCyPpYLMHceB126q7UE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "415255538939-1t9a9l1k3as8uj31ve58a11qta48cftf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

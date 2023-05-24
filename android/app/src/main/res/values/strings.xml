@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">taxi_app_natives</string>
+    <string name="mapbox_access_token">sk.eyJ1IjoieXVzaWZkaHJnYW0iLCJhIjoiY2xpMXR5OW93MDFnYzNkbHMwcmJiN2V5dSJ9.9q0WltnEG30duUi9xKbbww</string>
+</resources>
