@@ -36,8 +36,8 @@
       </activity>
       <meta-data
      android:name="com.google.android.geo.API_KEY"
-     android:value="AIzaSyAeOen8Tr6LYEpkLkGk3E__uhvE25t7E40"/>
+     android:value="googlemaptokenhere"/>
      <meta-data android:name="MAPBOX_DOWNLOADS_TOKEN"
-    android:value="pk.eyJ1IjoieXVzaWZkaHJnYW0iLCJhIjoiY2xpMHY2cmd0MXJuYjNjbXc5NmN6N3VmaiJ9.Z2H9zx1hTntGP_d9sYaiHg" />
+    android:value="mapboxgokenhere" />
     </application>
 </manifest>
