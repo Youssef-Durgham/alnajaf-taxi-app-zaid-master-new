@@ -1,8 +1,9 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '11.0'
+platform :ios, '13'
 install! 'cocoapods', :deterministic_uuids => false
+install! 'cocoapods', :disable_input_output_paths => true
 
 target 'taxi_app_natives' do
   config = use_native_modules!
@@ -12,7 +13,7 @@ target 'taxi_app_natives' do
 
   use_react_native!(
     :path => config[:reactNativePath],
-    # to enable hermes on iOS, change `false` to `true` and then install pods
+    # to enable Hermes on iOS, change `false` to `true` and then install pods
     :hermes_enabled => flags[:hermes_enabled],
     :fabric_enabled => flags[:fabric_enabled],
     # An absolute path to your application root.
@@ -20,18 +21,33 @@ target 'taxi_app_natives' do
   )
 
   target 'taxi_app_nativesTests' do
-    inherit! :complete
+    inherit! :search_paths
     # Pods for testing
+  end
+  
+  pre_install do |installer|
+    $RNMBNAV.pre_install(installer)
+    # any other pre install hooks here
+  end
+
+  post_install do |installer|
+    $RNMBNAV.post_install(installer)
+    react_native_post_install(installer)
+
+    # any other post install hooks here
+    # Fix for FBLazyVector compatibility issue
+    installer.pods_project.targets.each do |target|
+      if target.name == 'FBLazyVector'
+        target.build_configurations.each do |config|
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+        end
+      end
+    end
   end
 
   # Enables Flipper.
   #
-  # Note that if you have use_frameworks! enabled, Flipper will not work and
+  # Note that if you have use_frameworks! enabled, Flipper will not work, and
   # you should disable the next line.
-  use_flipper!()
-
-  post_install do |installer|
-    react_native_post_install(installer)
-    __apply_Xcode_12_5_M1_post_install_workaround(installer)
-  end
+  use_flipper!
 end

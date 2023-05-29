@@ -11,6 +11,9 @@
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
 
 
     <application
@@ -22,6 +25,7 @@
       android:allowBackup="false"
       android:theme="@style/AppTheme"
       android:supportsRtl="true">
+      <meta-data android:name="MAPBOX_ACCESS_TOKEN" android:value="pk.eyJ1IjoieXVzaWZkaHJnYW0iLCJhIjoiY2xpMHY2cmd0MXJuYjNjbXc5NmN6N3VmaiJ9.Z2H9zx1hTntGP_d9sYaiHg" />
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
@@ -37,7 +41,5 @@
       <meta-data
      android:name="com.google.android.geo.API_KEY"
      android:value="AIzaSyAeOen8Tr6LYEpkLkGk3E__uhvE25t7E40"/>
-     <meta-data android:name="MAPBOX_DOWNLOADS_TOKEN"
-    android:value="pk.eyJ1IjoieXVzaWZkaHJnYW0iLCJhIjoiY2xpMHY2cmd0MXJuYjNjbXc5NmN6N3VmaiJ9.Z2H9zx1hTntGP_d9sYaiHg" />
     </application>
 </manifest>

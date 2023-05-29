@@ -58,6 +58,7 @@ import OrderDataScreen from './screens/OrderDataScreen';
 import InternetCheck from './screens/InternetCheck';
 import Sign_up_carScreen from './screens/Sign_up_carScreen';
 import ScanScreen from './screens/ScanScreen';
+import ClientDataScreen from './screens/ClientDataScreen';
 
 const Stack = createStackNavigator();
 
@@ -556,6 +557,14 @@ export default function App() {
                 <Stack.Screen
                   name="Points"
                   component={PointsScreen}
+                  options={{
+                    cardStyleInterpolator: forSlide,
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name="ClientData"
+                  component={ClientDataScreen}
                   options={{
                     cardStyleInterpolator: forSlide,
                     headerShown: false,

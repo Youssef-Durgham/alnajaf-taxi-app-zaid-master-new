@@ -285,10 +285,9 @@ dependencies {
 
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation "com.mapbox.mapboxsdk:mapbox-android-core:5.0.0" 
-implementation('com.mapbox.mapboxsdk:mapbox-android-core:5.0.0') {
-         exclude group: 'com.mapbox.common', module: 'common'
-}
+
+    implementation 'com.mapbox.navigation:core:1.5.0'
+    implementation 'com.mapbox.navigation:ui:1.5.0'
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 

@@ -10,7 +10,7 @@ buildscript {
         targetSdkVersion = 33
         googleServicesVersion = '4.3.15'
         firebaseBomVersion = "31.3.0"
-        kotlin_version = '1.6.10'
+        kotlin_version = '1.6.0'
 
         if (System.properties['os.arch'] == "aarch64") {
             // For M1 Users we need to use the NDK 24 which added support for aarch64
@@ -24,18 +24,15 @@ buildscript {
         google()
         mavenCentral()
         maven {
-              url 'https://api.mapbox.com/downloads/v2/releases/maven'
-              authentication {
-                  basic(BasicAuthentication)
-              }
-              credentials {
-                // Do not change the username below.
-                // This should always be `mapbox` (not your username).
-                  username = "mapbox"
-                  // Use the secret token you stored in gradle.properties as the password
-                  password = project.properties['MAPBOX_DOWNLOADS_TOKEN'] ?: ""
-              }
-          }
+            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+            authentication {
+                basic(BasicAuthentication)
+            }
+            credentials {
+                username = "mapbox"
+                password = project.properties['MAPBOX_DOWNLOADS_TOKEN'] ?: ""
+            }
+        }
     }
     dependencies {
         classpath("com.android.tools.build:gradle:7.3.1")
@@ -75,18 +72,15 @@ allprojects {
 
       maven { url 'https://maven.google.com' }
 maven {
-              url 'https://api.mapbox.com/downloads/v2/releases/maven'
-              authentication {
-                  basic(BasicAuthentication)
-              }
-              credentials {
-                // Do not change the username below.
-                // This should always be `mapbox` (not your username).
-                  username = "mapbox"
-                  // Use the secret token you stored in gradle.properties as the password
-                  password = project.properties['MAPBOX_DOWNLOADS_TOKEN'] ?: ""
-              }
-          }
+            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+            authentication {
+                basic(BasicAuthentication)
+            }
+            credentials {
+                username = "mapbox"
+                password = project.properties['MAPBOX_DOWNLOADS_TOKEN'] ?: ""
+            }
+        }
 
 
     }

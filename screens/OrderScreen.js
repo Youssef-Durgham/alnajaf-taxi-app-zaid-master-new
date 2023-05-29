@@ -1,16 +1,111 @@
-import {View, Text, Pressable, TouchableOpacity, Image} from 'react-native';
-import React from 'react';
-import {SafeAreaView} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  SafeAreaView,
+  Text,
+  Pressable,
+  ImageBackground,
+  View,
+  FlatList,
+  ActivityIndicator,
+  TouchableOpacity,
+} from 'react-native';
 import {ChevronLeftIcon} from 'react-native-heroicons/outline';
 import {useNavigation} from '@react-navigation/native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import LinearGradient from 'react-native-linear-gradient';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const OrderScreen = () => {
   const navigation = useNavigation();
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
+  const [imageLoading, setImageLoading] = useState(false); // Add image loading state
+console.log(orders)
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const token = await AsyncStorage.getItem('jwtToken');
+        const response = await fetch(
+          'https://xd8wshpkog.execute-api.me-south-1.amazonaws.com/dev/api/orders-subscribe/captain',
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `${token}`,
+            },
+          },
+        );
+        if (!response.ok) {
+          throw new Error('Error fetching order data');
+        }
+        const responseData = await response.json();
+        setOrders(responseData);
+        setLoading(false); // Set loading state to false after data is fetched
+      } catch (error) {
+        console.error('Error fetching order data:', error);
+        // Handle the error appropriately, e.g., show an error message
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+  const handleImageLoadStart = () => {
+    setImageLoading(true);
+  };
+
+  const handleImageLoadEnd = () => {
+    setImageLoading(false);
+  };
+
+  const handleItemPress = item => {
+    navigation.navigate('ClientData', {data: item});
+  };
+
+  const renderItem = ({item}) => {
+    return (
+      <TouchableOpacity
+        onPress={() => handleItemPress(item)}
+        className="flex-row items-center bg-white w-[90%] mx-auto p-2 rounded-xl mt-3">
+        <View className="ml-auto flex-row pr-3">
+          <Text className="mr-5 text-xl text-black text-center my-auto">
+            {item.name}
+          </Text>
+          <View
+            style={{
+              width: 50,
+              height: 50,
+              borderRadius: 25,
+              overflow: 'hidden',
+            }}>
+            <ImageBackground
+              source={{uri: item.picture || null}}
+              style={{
+                width: '100%',
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 25,
+              }}
+              className="bg-[#a05193]"
+              onLoadStart={handleImageLoadStart}
+              onLoadEnd={handleImageLoadEnd}>
+              {imageLoading && (
+                <ActivityIndicator size="small" color="#FFFFFF" />
+              )}
+              {!imageLoading && !item.picture && (
+                <Text className="text-white text-lg">
+                  {item.name.charAt(0)}
+                </Text>
+              )}
+            </ImageBackground>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1">
       <Pressable
         className="mt-5 ml-4 w-20 flex-row"
         onPress={() => navigation.goBack()}>
@@ -24,82 +119,19 @@ const OrderScreen = () => {
           رجوع
         </Text>
       </Pressable>
-      <Text className="text-black font-bold text-2xl ml-auto mx-auto">
-        احجز خطك الان !
-      </Text>
-      <Text className="text-gray-400 font-bold text-xl ml-auto mx-auto">
-        اختر نوع الخط
-      </Text>
-      <View className=" space-y-8 flex-1 mt-5">
-        <View className="w-[90%] bg-white mx-auto flex-[0.4] mt-2 rounded-2xl items-center">
-          <View className="w-[50%] h-[30%] flex justify-center items-center">
-            <Image
-              source={require('../assets/taxi4.png')}
-              className="object-cover h-full w-full"
-              style={{transform: [{scaleX: -1}], margin: 10}}
-            />
-          </View>
-          <Text className="mt-2 text-gray-400 font-semibold text-xl">
-            احجز مع خطي
-          </Text>
-          <TouchableOpacity
-            className="mt-2 w-[50%] h-12 "
-            onPress={() => navigation.navigate('RegularOrder')}>
-            <LinearGradient
-              colors={['#4b63ac', '#a05193', '#e51978']}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 1}}
-              locations={[0, 0.5, 1]}
-              angle={45}
-              className="h-12 rounded-full">
-              <Text className="text-center my-auto text-2xl font-bold text-white">
-                خط عادي
-              </Text>
-            </LinearGradient>
-          </TouchableOpacity>
-        </View>
 
-        <View className="relative -top-3 w-[80%] h-1 mx-auto">
-          <View className="border-b border-transparent rounded-full overflow-hidden">
-            <LinearGradient
-              colors={['#4b63ac', '#a05193', '#e51978']}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 1}}
-              locations={[0, 0.5, 1]}
-              angle={45}
-              className="h-full w-full"
-            />
-          </View>
+      {loading ? (
+        <View className="flex-1 justify-center items-center">
+          <ActivityIndicator size="large" color="#a05193" />
         </View>
-
-        <View className="w-[90%] bg-white mx-auto flex-[0.4] mt-2 rounded-2xl items-center">
-          <View className="w-[50%] h-[30%] flex justify-center items-center">
-            <Image
-              source={require('../assets/taxi3.png')}
-              className="object-cover h-full w-full"
-            />
-          </View>
-
-          <Text className="mt-2 text-gray-400 font-semibold text-xl text-center pl-16 pr-16">
-            احجز خط خاص بك فقط او مع مجموعة من اختيارك
-          </Text>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('VipOrder')}
-            className="mt-2 w-[50%] h-12">
-            <LinearGradient
-              colors={['#4b63ac', '#a05193', '#e51978']}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 1}}
-              locations={[0, 0.5, 1]}
-              angle={45}
-              className="h-12 rounded-full">
-              <Text className="text-center my-auto text-2xl font-bold text-white">
-                خط خاص <Text>(vip)</Text>
-              </Text>
-            </LinearGradient>
-          </TouchableOpacity>
-        </View>
-      </View>
+      ) : (
+        <FlatList
+          data={orders}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index.toString()}
+          className="mt-10"
+        />
+      )}
     </SafeAreaView>
   );
 };
