@@ -1,28 +1,109 @@
 {
   "project_info": {
-    "project_number": "415255538939",
-    "project_id": "taxi-captain-baf40",
-    "storage_bucket": "taxi-captain-baf40.appspot.com"
+    "project_number": "86030206296",
+    "firebase_url": "https://taxi-a519a-default-rtdb.firebaseio.com",
+    "project_id": "taxi-a519a",
+    "storage_bucket": "taxi-a519a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:415255538939:android:d3bfc20313943e60f9545e",
+        "mobilesdk_app_id": "1:86030206296:android:7889da8adf76834118912d",
+        "android_client_info": {
+          "package_name": "com.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86030206296-hnlead6kom655q2rm7n614n6osr7fp33.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.firebase",
+            "certificate_hash": "314ebb62ead67d0f549e04cb440a6dc0da4f3d4a"
+          }
+        },
+        {
+          "client_id": "86030206296-appdvtqhuq0nbv8rn16m3p75ddrdovgl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEG8umTjt5jM9NHj5KbxR_Gdrw0GRuFa8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86030206296-appdvtqhuq0nbv8rn16m3p75ddrdovgl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "86030206296-c4ibauf83mie9s61st3d7t5attg0d6b8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.youseefdurgham.khati"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86030206296:android:f2f42ae27bc3b75e18912d",
+        "android_client_info": {
+          "package_name": "com.kati.kati"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86030206296-appdvtqhuq0nbv8rn16m3p75ddrdovgl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEG8umTjt5jM9NHj5KbxR_Gdrw0GRuFa8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86030206296-appdvtqhuq0nbv8rn16m3p75ddrdovgl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "86030206296-c4ibauf83mie9s61st3d7t5attg0d6b8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.youseefdurgham.khati"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86030206296:android:7fbb62a5a6a478a318912d",
         "android_client_info": {
           "package_name": "com.khati.kaptain"
         }
       },
       "oauth_client": [
         {
-          "client_id": "415255538939-dnjhgeijrp3k88c6mjk0j9r2sv2uvm1c.apps.googleusercontent.com",
+          "client_id": "86030206296-gbld2avjmtbuf2j73krqp6ah7c0s959v.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.khati.kaptain",
-            "certificate_hash": "50cd78019103dbe81969802a25f512f7a3b293a9"
+            "certificate_hash": "a72c9e0df824f926fe581c121cf0bc32ff08214e"
           }
         },
         {
-          "client_id": "415255538939-kl7o34i1h1fg9atjsjho4th58kccicuu.apps.googleusercontent.com",
+          "client_id": "86030206296-jfpj3qu09pbpf0tcgrucmrfqj8sgmego.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.khati.kaptain",
@@ -30,21 +111,124 @@
           }
         },
         {
-          "client_id": "415255538939-1t9a9l1k3as8uj31ve58a11qta48cftf.apps.googleusercontent.com",
+          "client_id": "86030206296-sgfvp1l833gjtjrjp4ikudg676po2ba9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.khati.kaptain",
+            "certificate_hash": "50cd78019103dbe81969802a25f512f7a3b293a9"
+          }
+        },
+        {
+          "client_id": "86030206296-appdvtqhuq0nbv8rn16m3p75ddrdovgl.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDQ9iRk0UfDH1hBgCyPpYLMHceB126q7UE"
+          "current_key": "AIzaSyBEG8umTjt5jM9NHj5KbxR_Gdrw0GRuFa8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "415255538939-1t9a9l1k3as8uj31ve58a11qta48cftf.apps.googleusercontent.com",
+              "client_id": "86030206296-appdvtqhuq0nbv8rn16m3p75ddrdovgl.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "86030206296-c4ibauf83mie9s61st3d7t5attg0d6b8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.youseefdurgham.khati"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86030206296:android:201fe3cd9c1ba44018912d",
+        "android_client_info": {
+          "package_name": "com.taxi_app_natives"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86030206296-2amd56r86chnrl613srqfapdks3kfpfi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.taxi_app_natives",
+            "certificate_hash": "e427e886de73479a1d3592da604b2c6ffa49e301"
+          }
+        },
+        {
+          "client_id": "86030206296-appdvtqhuq0nbv8rn16m3p75ddrdovgl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEG8umTjt5jM9NHj5KbxR_Gdrw0GRuFa8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86030206296-appdvtqhuq0nbv8rn16m3p75ddrdovgl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "86030206296-c4ibauf83mie9s61st3d7t5attg0d6b8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.youseefdurgham.khati"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86030206296:android:ef815c5cda57c88f18912d",
+        "android_client_info": {
+          "package_name": "com.youseefdurgham.khati"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86030206296-64aal77adj0pdda8eo0hlgcor4jbrf42.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.youseefdurgham.khati",
+            "certificate_hash": "241b890a8dcdb219daed2bf7b623605cb0337016"
+          }
+        },
+        {
+          "client_id": "86030206296-appdvtqhuq0nbv8rn16m3p75ddrdovgl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEG8umTjt5jM9NHj5KbxR_Gdrw0GRuFa8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86030206296-appdvtqhuq0nbv8rn16m3p75ddrdovgl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "86030206296-c4ibauf83mie9s61st3d7t5attg0d6b8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.youseefdurgham.khati"
+              }
             }
           ]
         }

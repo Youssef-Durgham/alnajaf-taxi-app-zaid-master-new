@@ -65,29 +65,29 @@ const WalletScreen = () => {
         console.error('Error fetching wallet balance:', error);
       }
     }
-    async function fetchActiveOrderCost() {
-      try {
-        const token = await AsyncStorage.getItem('jwtToken');
-        const response = await fetch(`${API_URL}/activeOrderCost`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: token,
-          },
-        });
+    // async function fetchActiveOrderCost() {
+    //   try {
+    //     const token = await AsyncStorage.getItem('jwtToken');
+    //     const response = await fetch(`${API_URL}/activeOrderCost`, {
+    //       method: 'GET',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         Authorization: token,
+    //       },
+    //     });
 
-        if (!response.ok) {
-          throw new Error('Error fetching active order cost');
-        }
+    //     if (!response.ok) {
+    //       throw new Error('Error fetching active order cost');
+    //     }
 
-        const data = await response.json();
-        setActiveOrderCost(data.costs);
-      } catch (error) {
-        console.error('Error fetching active order cost:', error);
-      }
-    }
+    //     const data = await response.json();
+    //     setActiveOrderCost(data.costs);
+    //   } catch (error) {
+    //     console.error('Error fetching active order cost:', error);
+    //   }
+    // }
 
-    fetchActiveOrderCost();
+    // fetchActiveOrderCost();
 
     fetchWalletBalance();
   }, []);
@@ -238,7 +238,7 @@ const WalletScreen = () => {
           </LinearGradient>
         </TouchableOpacity>
       </View>
-      <View className="relative w-[80%] h-1 mx-auto mt-7">
+      {/* <View className="relative w-[80%] h-1 mx-auto mt-7">
         <View className="border-b border-transparent rounded-full overflow-hidden">
           <LinearGradient
             colors={['#4b63ac', '#a05193', '#e51978']}
@@ -284,7 +284,7 @@ const WalletScreen = () => {
             </Text>
           </LinearGradient>
         </TouchableOpacity>
-      </View>
+      </View> */}
       <Modal isVisible={walletPaymentModalVisible}>
         <View style={{backgroundColor: 'white', padding: 20, borderRadius: 10}}>
           <Text style={{fontSize: 20, textAlign: 'center', marginBottom: 10}}>

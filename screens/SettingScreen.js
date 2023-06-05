@@ -23,42 +23,42 @@ import LinearGradient from 'react-native-linear-gradient';
 const SettingScreen = props => {
   const navigation = useNavigation();
   const [userData, setUserData] = useState({});
-  const [orderStatus, setOrderStatus] = useState(null);
+  // const [orderStatus, setOrderStatus] = useState(null);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [isWarningModalVisible, setIsWarningModalVisible] = useState(false);
   const [isCancelModalVisible, setIsCancelModalVisible] = useState(false);
   const [note, setNote] = useState('');
 
-  const fetchOrderStatus = async () => {
-    try {
-      const token = await AsyncStorage.getItem('jwtToken');
-      const response = await fetch(
-        'https://xd8wshpkog.execute-api.me-south-1.amazonaws.com/dev/order/status',
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `${token}`,
-          },
-        },
-      );
+  // const fetchOrderStatus = async () => {
+  //   try {
+  //     const token = await AsyncStorage.getItem('jwtToken');
+  //     const response = await fetch(
+  //       'https://xd8wshpkog.execute-api.me-south-1.amazonaws.com/dev/order/status',
+  //       {
+  //         method: 'GET',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           Authorization: `${token}`,
+  //         },
+  //       },
+  //     );
 
-      if (!response.ok) {
-        console.log(response);
-        throw new Error('Error fetching order status');
-      }
+  //     if (!response.ok) {
+  //       console.log(response);
+  //       throw new Error('Error fetching order status');
+  //     }
 
-      const data = await response.json();
-      setOrderStatus(data.status);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     const data = await response.json();
+  //     setOrderStatus(data.status);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   useFocusEffect(
     React.useCallback(() => {
       fetchUserData();
-      fetchOrderStatus();
+      // fetchOrderStatus();
       // return a cleanup function if needed
       return () => {};
     }, []),
@@ -155,11 +155,11 @@ const SettingScreen = props => {
   };
 
   const handleDeletePress = () => {
-    if (orderStatus) {
-      setIsWarningModalVisible(true);
-    } else {
-      setIsDeleteModalVisible(true);
-    }
+    // if (orderStatus) {
+    setIsWarningModalVisible(true);
+    // } else {
+    //   setIsDeleteModalVisible(true);
+    // }
   };
 
   const deleteUser = async () => {
@@ -348,7 +348,7 @@ const SettingScreen = props => {
           </View>
         </View>
       </Modal>
-      <View
+      {/* <View
         className={`absolute top-0 left-0 m-5 w-20 h-10 rounded-full flex items-center justify-center ${
           orderStatus ? 'bg-green-500' : 'bg-red-500'
         }`}
@@ -356,7 +356,7 @@ const SettingScreen = props => {
         <Text className="text-white font-bold">
           {orderStatus ? 'فعال' : 'غير فعال'}
         </Text>
-      </View>
+      </View> */}
       <View className="relative mb-5 flex items-center  mt-20">
         {userData.image ? (
           <Image
@@ -399,7 +399,7 @@ const SettingScreen = props => {
       </TouchableOpacity>
 
       <TouchableOpacity
-        className="border-b bg-white p-2 w-[90%] mx-auto rounded-t-xl border-zinc-200"
+        className="border-b bg-white p-2 w-[90%] mx-auto border-zinc-200"
         onPress={() => navigation.navigate('Points')}>
         <View className="flex-row justify-between items-center">
           <View className="justify-center items-center">
@@ -416,7 +416,7 @@ const SettingScreen = props => {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         className="border-b bg-white p-2 w-[90%] mx-auto border-zinc-200"
         onPress={() => navigation.navigate('Changeuserlocation')}>
         <View className="flex-row justify-between items-center">
@@ -432,9 +432,9 @@ const SettingScreen = props => {
             </View>
           </View>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         className="border-b bg-white p-2 w-[90%] mx-auto border-zinc-200"
         onPress={() => navigation.navigate('OrderData')}>
         <View className="flex-row justify-between items-center">
@@ -450,7 +450,7 @@ const SettingScreen = props => {
             </View>
           </View>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <TouchableOpacity
         className="border-b bg-white p-2 w-[90%] mx-auto border-zinc-200"
@@ -470,7 +470,7 @@ const SettingScreen = props => {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         className="border-b bg-white p-2 w-[90%] mx-auto border-zinc-200"
         onPress={() => setIsCancelModalVisible(true)}>
         <View className="flex-row justify-between items-center">
@@ -486,10 +486,10 @@ const SettingScreen = props => {
             </View>
           </View>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <TouchableOpacity
-        className="border-b bg-white p-2 w-[90%] mx-auto border-zinc-200"
+        className="bg-white p-2 w-[90%] mx-auto rounded-b-xl"
         onPress={handleDeletePress}>
         <View className="flex-row justify-between items-center">
           <View className="justify-center items-center">

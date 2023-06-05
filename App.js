@@ -59,6 +59,7 @@ import InternetCheck from './screens/InternetCheck';
 import Sign_up_carScreen from './screens/Sign_up_carScreen';
 import ScanScreen from './screens/ScanScreen';
 import ClientDataScreen from './screens/ClientDataScreen';
+import {LocationContext, LocationProvider} from './LocationContext';
 
 const Stack = createStackNavigator();
 
@@ -312,362 +313,367 @@ export default function App() {
   return (
     <InternetCheck>
       <Provider store={store}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            {/* {userToken != null ? ( */}
-            {userToken ? (
-              <>
-                <Stack.Screen
-                  name="BottomTab"
-                  component={BottomTabScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="Notification"
-                  component={NotificationScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="Changeuserlocation"
-                  component={ChangeuserlocationScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="Order"
-                  component={OrderScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="RegularOrder"
-                  component={RegularOrderScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="VipOrder"
-                  component={VipOrderScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="LocationInput"
-                  component={LocationInputScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="DestinationInput"
-                  component={DestinationInputScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="MapNew"
-                  component={MapNew}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="ManualLocationInput"
-                  component={ManualLocationInputScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="SuggestionPlace"
-                  component={SuggestionPlaceScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="PhoneInviteNumber"
-                  component={PhoneInviteNumberScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="OrderData"
-                  component={OrderDataScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="VerifyInfo"
-                  component={VerifyInfoScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="SuccessScreen"
-                  component={SuccessScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="Failed"
-                  component={FailedScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="ApiError"
-                  component={ApiErrorScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="Cancel"
-                  component={CancelScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="CaptainInfo"
-                  component={CaptainInfoScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="Wallet"
-                  component={WalletScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="UserData"
-                  component={UserDataScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="TermsAndConditions"
-                  component={TermsAndConditionsScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name="Support"
-                  component={SupportScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name="EditUserData"
-                  component={EditUserDataScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name="Gift"
-                  component={GiftScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name="Discount"
-                  component={DiscountScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name="InviteExplain"
-                  component={InviteExplainScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name="Points"
-                  component={PointsScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name="ClientData"
-                  component={ClientDataScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name="OTPchangephone"
-                  component={OTPchangephoneScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                />
-              </>
-            ) : (
-              <>
-                <Stack.Screen
-                  name="Onboarding"
-                  component={OnboardingScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name="PrfileImage"
-                  component={ProfileImageScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="Sign_in"
-                  component={Sign_inScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                  initialParams={{onSignIn: handleSignIn}}
-                />
-                <Stack.Screen
-                  name="Sign_up"
-                  component={Sign_upScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name="Sign_up_car"
-                  component={Sign_up_carScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name="MapSignup"
-                  component={MapSignupScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name="TermsAndConditions"
-                  component={TermsAndConditionsScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name="Scan"
-                  component={ScanScreen}
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name="OTPVerification"
-                  options={{
-                    cardStyleInterpolator: forSlide,
-                    headerShown: false,
-                  }}>
-                  {props => (
-                    <OTPVerificationScreen {...props} onSignIn={handleSignIn} />
-                  )}
-                </Stack.Screen>
-              </>
-            )}
+        <LocationProvider>
+          <NavigationContainer>
+            <Stack.Navigator>
+              {/* {userToken != null ? ( */}
+              {userToken ? (
+                <>
+                  <Stack.Screen
+                    name="BottomTab"
+                    component={BottomTabScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="Notification"
+                    component={NotificationScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="Changeuserlocation"
+                    component={ChangeuserlocationScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="Order"
+                    component={OrderScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="RegularOrder"
+                    component={RegularOrderScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="VipOrder"
+                    component={VipOrderScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="LocationInput"
+                    component={LocationInputScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="DestinationInput"
+                    component={DestinationInputScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="MapNew"
+                    component={MapNew}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="ManualLocationInput"
+                    component={ManualLocationInputScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="SuggestionPlace"
+                    component={SuggestionPlaceScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="PhoneInviteNumber"
+                    component={PhoneInviteNumberScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="OrderData"
+                    component={OrderDataScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="VerifyInfo"
+                    component={VerifyInfoScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="SuccessScreen"
+                    component={SuccessScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="Failed"
+                    component={FailedScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="ApiError"
+                    component={ApiErrorScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="Cancel"
+                    component={CancelScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="CaptainInfo"
+                    component={CaptainInfoScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="Wallet"
+                    component={WalletScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="UserData"
+                    component={UserDataScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="TermsAndConditions"
+                    component={TermsAndConditionsScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="Support"
+                    component={SupportScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="EditUserData"
+                    component={EditUserDataScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="Gift"
+                    component={GiftScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="Discount"
+                    component={DiscountScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="InviteExplain"
+                    component={InviteExplainScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="Points"
+                    component={PointsScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="ClientData"
+                    component={ClientDataScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="OTPchangephone"
+                    component={OTPchangephoneScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                  />
+                </>
+              ) : (
+                <>
+                  <Stack.Screen
+                    name="Onboarding"
+                    component={OnboardingScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="PrfileImage"
+                    component={ProfileImageScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="Sign_in"
+                    component={Sign_inScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                    initialParams={{onSignIn: handleSignIn}}
+                  />
+                  <Stack.Screen
+                    name="Sign_up"
+                    component={Sign_upScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="Sign_up_car"
+                    component={Sign_up_carScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="MapSignup"
+                    component={MapSignupScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="TermsAndConditions"
+                    component={TermsAndConditionsScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="Scan"
+                    component={ScanScreen}
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="OTPVerification"
+                    options={{
+                      cardStyleInterpolator: forSlide,
+                      headerShown: false,
+                    }}>
+                    {props => (
+                      <OTPVerificationScreen
+                        {...props}
+                        onSignIn={handleSignIn}
+                      />
+                    )}
+                  </Stack.Screen>
+                </>
+              )}
 
-            {/* <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+              {/* <Stack.Screen name="Onboarding" component={OnboardingScreen} />
               <Stack.Screen name="Sign_up" component={Sign_upScreen} options={{ headerShown: false, presentation: 'modal' }} />
               <Stack.Screen name="Sign_in" component={Sign_inScreen} options={{ headerShown: false, presentation: 'modal' }} />
               <Stack.Screen name="MapSignup" component={MapSignupScreen} options={{ headerShown: false, presentation: 'modal' }} />
               <Stack.Screen name="PhoneNumber" component={PhoneNumberScreen}  />
               <Stack.Screen name="OTPVerification" component={OTPVerificationScreen} /> */}
-          </Stack.Navigator>
-        </NavigationContainer>
+            </Stack.Navigator>
+          </NavigationContainer>
+        </LocationProvider>
       </Provider>
     </InternetCheck>
   );

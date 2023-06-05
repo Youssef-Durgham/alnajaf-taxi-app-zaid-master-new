@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState, useContext} from 'react';
 import {useNavigation} from '@react-navigation/native'; // Add this line
 import {
   View,
@@ -23,7 +23,8 @@ import RNSwipeVerify from 'react-native-swipe-verify';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import LinearGradientImage from '../assets/button.png';
 import axios from 'axios';
-import {useFocusEffect} from '@react-navigation/native'; // if you're using axios to make HTTP requests
+import {useFocusEffect} from '@react-navigation/native';
+import {LocationContext} from '../LocationContext'; // if you're using axios to make HTTP requests
 
 const {width} = Dimensions.get('window');
 
@@ -35,10 +36,14 @@ const HomeScreen = props => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [carouselLoaded, setCarouselLoaded] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [orderStatus, setOrderStatus] = useState(null);
+  // const [orderStatus, setOrderStatus] = useState(null);
   const [adImage, setAdImage] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [hasUnreadMessages2, setHasUnreadMessage2] = useState(false);
+  const [isSwipeActive, setIsSwipeActive] = useState(false);
+  const [isHandleStartRideCalled, setIsHandleStartRideCalled] = useState(false);
+  const {startSendingLocation, stopSendingLocation} =
+    useContext(LocationContext);
 
   const fetchUnreadMessages2 = async () => {
     try {
@@ -96,28 +101,28 @@ const HomeScreen = props => {
     this.swipeVerify2.reset();
   }, []);
 
-  const fetchOrderStatus = async () => {
-    try {
-      const token = await AsyncStorage.getItem('jwtToken');
-      const response = await fetch(
-        'https://oi3ycq27x5.execute-api.me-south-1.amazonaws.com/dev/check-order/homepage',
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `${token}`,
-          },
-        },
-      );
-      const data = await response.json();
-      setOrderStatus(data.hasActiveOrder);
-    } catch (error) {
-      console.error('Error fetching order status:', error);
-    }
-  };
+  // const fetchOrderStatus = async () => {
+  //   try {
+  //     const token = await AsyncStorage.getItem('jwtToken');
+  //     const response = await fetch(
+  //       'https://oi3ycq27x5.execute-api.me-south-1.amazonaws.com/dev/check-order/homepage',
+  //       {
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           Authorization: `${token}`,
+  //         },
+  //       },
+  //     );
+  //     const data = await response.json();
+  //     setOrderStatus(data.hasActiveOrder);
+  //   } catch (error) {
+  //     console.error('Error fetching order status:', error);
+  //   }
+  // };
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      fetchOrderStatus();
+      // fetchOrderStatus();
     });
 
     // Clean up the subscription when the component is unmounted
@@ -126,7 +131,7 @@ const HomeScreen = props => {
 
   // Call fetchOrderStatus once on the initial page load
   useEffect(() => {
-    fetchOrderStatus();
+    // fetchOrderStatus();
   }, []);
 
   const fetchAdImage = async () => {
@@ -304,6 +309,33 @@ const HomeScreen = props => {
     return unsubscribe;
   }, []);
 
+  const handleStartRide = async () => {
+    try {
+      // Retrieve JWT token from AsyncStorage
+      const token = await AsyncStorage.getItem('jwtToken');
+
+      // Make the GET request to the API
+      const response = await axios.get(
+        'https://oi3ycq27x5.execute-api.me-south-1.amazonaws.com/dev/api/taxiOrders/captainLatestOrders',
+        {
+          headers: {Authorization: `${token}`},
+        },
+      );
+
+      // Handle the response
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleButtonPress = () => {
+    if (!isHandleStartRideCalled) {
+      setIsHandleStartRideCalled(true);
+      handleStartRide();
+    }
+  };
+
   const renderItem = data => (
     <View key={data._id} className="flex justify-center items-center">
       <View className="rounded-2xl w-screen">
@@ -368,7 +400,7 @@ const HomeScreen = props => {
           // Replace the View component with SkeletonPlaceholder
           <View className="mx-auto">
             <SkeletonPlaceholder>
-              <SkeletonPlaceholder.Item
+              <SkeletonPlaceholder
                 width={width * 0.9}
                 height={width * 0.6}
                 borderRadius={20}
@@ -428,7 +460,11 @@ const HomeScreen = props => {
         <View className="w-[90%] mx-auto mt-0 flex-[0.1]">
           <LinearGradient
             className="h-[68px]"
-            colors={['#cce3f2', '#e1d9ed', '#fccde3']}
+            colors={
+              isSwipeActive
+                ? ['#e51978', '#a05193', '#4b63ac']
+                : ['#cce3f2', '#e1d9ed', '#fccde3']
+            }
             start={{x: 0, y: 0}}
             end={{x: 1, y: 1}}
             locations={[0, 0.3, 1]}
@@ -473,8 +509,13 @@ const HomeScreen = props => {
                 }
               }>
               <View style={styles.swipeTextContainer}>
-                <Text className="text-black text-2xl font-bold">
-                  بدء الرحلة
+                <Text
+                  className={
+                    isSwipeActive
+                      ? 'text-white text-2xl font-bold'
+                      : 'text-black text-2xl font-bold'
+                  }>
+                  {isSwipeActive ? 'انهاء الرحلة' : 'بدء الرحلة'}
                 </Text>
               </View>
             </RNSwipeVerify>
@@ -491,8 +532,7 @@ const HomeScreen = props => {
                 <View style={styles.modalView}>
                   {/* Add the content of the modal here */}
                   <Text className="text-black text-xl text-center mb-5">
-                    هل انت متأكد من عدم حظورك غداً ؟؟ سيتم ارسال اشعار للسائق
-                    بذلك
+                    هل انت متأكد ؟؟ سيتم ارسال اشعار للمشتركين بذلك
                   </Text>
                   <View className="flex-row space-x-3">
                     <LinearGradient
@@ -506,7 +546,9 @@ const HomeScreen = props => {
                         borderRadius: 30,
                         overflow: 'hidden',
                       }}>
-                      <TouchableOpacity className="" onPress={closeModal}>
+                      <TouchableOpacity
+                        className="items-center justify-center h-10 w-20"
+                        onPress={closeModal}>
                         <Text className="text-white text-lg text-center my-auto">
                           لا
                         </Text>
@@ -523,7 +565,15 @@ const HomeScreen = props => {
                         borderRadius: 30,
                         overflow: 'hidden',
                       }}>
-                      <TouchableOpacity className="" onPress={closeModal}>
+                      <TouchableOpacity
+                        className="items-center justify-center h-10 w-20"
+                        onPress={() => {
+                          closeModal(); // Invoke the closeModal function
+                          !isSwipeActive && startSendingLocation(); // Invoke the startSendingLocation function
+                          !isSwipeActive && handleButtonPress(); // Call handleButtonPress
+                          setIsSwipeActive(prevState => !prevState);
+                          isSwipeActive && stopSendingLocation();
+                        }}>
                         <Text className="text-white text-lg text-center my-auto">
                           نعم
                         </Text>

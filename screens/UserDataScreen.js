@@ -141,15 +141,15 @@ const UserDataScreen = props => {
               if (key === 'image') return null; // Do not render the image
 
               return (
-                <Pressable
-                  onPress={() =>
-                    navigation.navigate('EditUserData', {
-                      key,
-                      title: customTitles[key] || key,
-                      initialValue: value,
-                      onUpdate: fetchUserData, // Pass fetchUserData as a callback
-                    })
-                  }
+                <View
+                  // onPress={() =>
+                  //   navigation.navigate('EditUserData', {
+                  //     key,
+                  //     title: customTitles[key] || key,
+                  //     initialValue: value,
+                  //     onUpdate: fetchUserData, // Pass fetchUserData as a callback
+                  //   })
+                  // }
                   key={key}
                   className="flex-row-reverse w-full items-center my-2 p-2 bg-white rounded">
                   {/* Add the PencilIcon component */}
@@ -159,10 +159,10 @@ const UserDataScreen = props => {
                   <Text className="text-lg mr-4 text-black">
                     {translateValue(key, value)}
                   </Text>
-                  <View className="ml-auto">
+                  {/* <View className="ml-auto">
                     <Icon5 name="edit" size={25} color="#ADB5BD" />
-                  </View>
-                </Pressable>
+                  </View> */}
+                </View>
               );
             })}
             <Pressable

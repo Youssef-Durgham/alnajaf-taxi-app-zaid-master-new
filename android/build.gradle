@@ -7,7 +7,7 @@ buildscript {
         buildToolsVersion = "33.0.0"
         minSdkVersion = 21
         compileSdkVersion = 33
-        targetSdkVersion = 33
+        targetSdkVersion = 30
         googleServicesVersion = '4.3.15'
         firebaseBomVersion = "31.3.0"
         kotlin_version = '1.6.0'
@@ -48,6 +48,8 @@ buildscript {
 
 
 allprojects {
+    apply plugin: 'maven-publish'
+
     repositories {
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm

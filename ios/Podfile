@@ -5,6 +5,18 @@ platform :ios, '13'
 install! 'cocoapods', :deterministic_uuids => false
 install! 'cocoapods', :disable_input_output_paths => true
 
+pod 'Firebase', :modular_headers => true
+pod 'FirebaseCoreInternal', :modular_headers => true
+pod 'GoogleUtilities', :modular_headers => true
+pod 'FirebaseCore', :modular_headers => true
+pod 'FirebaseStorage', :modular_headers => true
+pod 'FirebaseAppCheckInterop', :modular_headers => true
+pod 'FirebaseAuthInterop', :modular_headers => true
+pod 'FirebaseCoreExtension', :modular_headers => true
+pod 'GTMSessionFetcher', :modular_headers => true
+
+
+
 target 'taxi_app_natives' do
   config = use_native_modules!
 
