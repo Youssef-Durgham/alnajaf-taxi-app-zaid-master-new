@@ -5,6 +5,8 @@
 #import <React/RCTRootView.h>
 
 #import <React/RCTAppSetupUtils.h>
+#import <Firebase.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 #if RCT_NEW_ARCH_ENABLED
 #import <React/CoreModulesPlugins.h>
@@ -13,7 +15,6 @@
 #import <React/RCTSurfacePresenter.h>
 #import <React/RCTSurfacePresenterBridgeAdapter.h>
 #import <ReactCommon/RCTTurboModuleManager.h>
-#import <GoogleMaps/GoogleMaps.h>
 
 #import <react/config/ReactNativeConfig.h>
 
@@ -31,7 +32,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [GMSServices provideAPIKey:@"AIzaSyAeOen8Tr6LYEpkLkGk3E__uhvE25t7E40"];
-  RCTAppSetupPrepareApp(application);
+  RCTAppSetupPrepareApp(application, true);
+  [FIRApp configure];
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
 
@@ -43,8 +45,8 @@
   bridge.surfacePresenter = _bridgeAdapter.surfacePresenter;
 #endif
 
-  UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"taxi_app_natives", nil);
-
+  // UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"taxi_app_natives", nil);
+  UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"taxi_app_natives", nil, true);
   if (@available(iOS 13.0, *)) {
     rootView.backgroundColor = [UIColor systemBackgroundColor];
   } else {

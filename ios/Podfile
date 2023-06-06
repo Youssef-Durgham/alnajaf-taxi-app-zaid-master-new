@@ -1,24 +1,18 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+rn_maps_path = '../node_modules/react-native-maps'
 
-platform :ios, '13'
+platform :ios, '13.0'
 install! 'cocoapods', :deterministic_uuids => false
 install! 'cocoapods', :disable_input_output_paths => true
 
-pod 'Firebase', :modular_headers => true
-pod 'FirebaseCoreInternal', :modular_headers => true
-pod 'GoogleUtilities', :modular_headers => true
-pod 'FirebaseCore', :modular_headers => true
-pod 'FirebaseStorage', :modular_headers => true
-pod 'FirebaseAppCheckInterop', :modular_headers => true
-pod 'FirebaseAuthInterop', :modular_headers => true
-pod 'FirebaseCoreExtension', :modular_headers => true
-pod 'GTMSessionFetcher', :modular_headers => true
-
-
-
 target 'taxi_app_natives' do
+  pod 'Google-Maps-iOS-Utils', :git => 'https://github.com/Simon-TechForm/google-maps-ios-utils.git', :branch => 'feat/support-apple-silicon'
+  pod 'react-native-google-maps', :path => rn_maps_path
+
   config = use_native_modules!
+  use_frameworks! :linkage => :static
+  $RNFirebaseAsStaticFramework = true
 
   # Flags change depending on the env values.
   flags = get_default_flags()
@@ -45,14 +39,16 @@ target 'taxi_app_natives' do
   post_install do |installer|
     $RNMBNAV.post_install(installer)
     react_native_post_install(installer)
+    __apply_Xcode_12_5_M1_post_install_workaround(installer)
 
+    installer.pods_project.build_configuration_list.build_configurations.each do |configuration|
+      configuration.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
+    end
     # any other post install hooks here
     # Fix for FBLazyVector compatibility issue
     installer.pods_project.targets.each do |target|
-      if target.name == 'FBLazyVector'
-        target.build_configurations.each do |config|
-          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
-        end
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
       end
     end
   end
@@ -61,5 +57,5 @@ target 'taxi_app_natives' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work, and
   # you should disable the next line.
-  use_flipper!
+  # use_flipper!
 end
